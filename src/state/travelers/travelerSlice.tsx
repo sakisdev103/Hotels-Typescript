@@ -11,7 +11,7 @@ const initialState: state = {
 };
 
 const travelerSlice = createSlice({
-  name: "city",
+  name: "travelers",
   initialState,
   reducers: {
     increase: (state) => {

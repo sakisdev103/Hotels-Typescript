@@ -1,6 +1,6 @@
 //File
 import Place from "@/components/Place";
-import Dates from "@/components/Dates";
+import { Dates } from "@/components/Dates";
 import Travelers from "@/components/Travelers";
 
 //Redux

@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import citiesReducer from "./cities/citiesSlice";
 import cityReducer from "./city/citySlice";
+import dateReducer from "./dates/datesSlice";
 import travelerRecuder from "./travelers/travelerSlice";
 
 export const store = configureStore({
   reducer: {
     cities: citiesReducer,
     city: cityReducer,
+    dates: dateReducer,
     travelers: travelerRecuder,
   },
 });

@@ -33,6 +33,7 @@ const Travelers = () => {
           name="adults_number"
           onKeyDown={(e) => e.preventDefault()}
           value={adults_number}
+          readOnly
         />
         <Button
           variant="ghost"
