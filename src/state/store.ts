@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import locationReducer from "./hotel/hotelSlice";
+import citiesReducer from "./cities/citiesSlice";
+import cityReducer from "./city/citySlice";
+import travelerRecuder from "./travelers/travelerSlice";
 
 export const store = configureStore({
   reducer: {
-    location: locationReducer,
+    cities: citiesReducer,
+    city: cityReducer,
+    travelers: travelerRecuder,
   },
 });
 
