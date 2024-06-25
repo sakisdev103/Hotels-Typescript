@@ -2,10 +2,7 @@ import { customFetch } from "@/utils/customFetch";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  location: "",
-  dest_id: null,
-  dest_type: null,
-  places: [],
+  loading: false,
   hotels: [],
 };
 const hotelSlice = createSlice({
@@ -14,19 +11,17 @@ const hotelSlice = createSlice({
   reducers: {},
 });
 
-// export const getHotels = createAsyncThunk(
-//   "getHotels",
-//   async (location: string) => {
-//     try {
-//       const resp = await customFetch.get(
-//         `/hotels/locations?locale=en-us&name=${location}`
-//       );
-//       console.log(resp);
-//       return resp.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
+export const getHotels = createAsyncThunk(
+  "getHotels",
+  async (location: string) => {
+    try {
+      const resp = await customFetch.get(`/hotels/search?`);
+      console.log(resp);
+      return resp.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export default hotelSlice.reducer;

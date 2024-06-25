@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 //Icons
-import { MapPin, Calendar, User, Search } from "lucide-react";
+import { MapPin, Calendar, User } from "lucide-react";
 
 import { format } from "date-fns";
 
