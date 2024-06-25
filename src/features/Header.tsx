@@ -16,54 +16,77 @@ import {
 import { Button } from "@/components/ui/button";
 
 //Icons
-import { MapPin, Calendar, User } from "lucide-react";
+import { MapPin, Calendar, User, Search } from "lucide-react";
+
+import { format } from "date-fns";
 
 const Header = () => {
   const { selectedCity } = useSelector((state: RootState) => state.city);
+  const date = useSelector((state: RootState) => state.dates);
+  const { adults_number, room_number } = useSelector(
+    (state: RootState) => state.travelers
+  );
   return (
     <div className="container my-4">
       <h1 className="text-4xl font-semibold">Where to?</h1>
-      <div className="grid md:grid-cols-3 gap-3 my-5">
+      <div className="grid lg:grid-cols-4 gap-2 content-center items-center mx-auto my-5 p-2 bg-slate-200 rounded-lg">
         <Popover>
-          <PopoverTrigger
-            className="flex items-center justify-center gap-1"
-            asChild
-          >
-            <Button variant="default">
-              <MapPin />
-              {selectedCity ? selectedCity : "Where are you going?"}
-            </Button>
+          <PopoverTrigger className="flex items-center justify-center " asChild>
+            <div className="text-center">
+              <Button className="w-full flex justify-items-center justify-center gap-1">
+                <MapPin />
+                {selectedCity ? selectedCity : "Where are you going?"}
+              </Button>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <Place />
           </PopoverContent>
         </Popover>
         <Popover>
-          <PopoverTrigger
-            className="flex items-center justify-center gap-1"
-            asChild
-          >
-            <Button variant="default">
-              <Calendar />
-            </Button>
+          <PopoverTrigger className="flex items-center justify-center " asChild>
+            <div className="text-center">
+              <Button className="w-full flex justify-items-center justify-center gap-1">
+                <Calendar />
+                {date?.from ? (
+                  date.to ? (
+                    <>
+                      {format(date.from, "LLL dd, y")} -{" "}
+                      {format(date.to, "LLL dd, y")}
+                    </>
+                  ) : (
+                    format(date.from, "LLL dd, y")
+                  )
+                ) : (
+                  <span>Pick a date</span>
+                )}
+              </Button>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <Dates />
           </PopoverContent>
         </Popover>
         <Popover>
-          <PopoverTrigger
-            className="flex items-center justify-center gap-1"
-            asChild
-          >
-            <Button variant="default">
-              <User />
-            </Button>
+          <PopoverTrigger className="flex items-center justify-center " asChild>
+            <div className="text-center">
+              <Button className="w-full flex justify-items-center justify-center gap-1">
+                <User />
+                {`${adults_number} ${
+                  adults_number > 1 ? "travelers" : "traveler"
+                }, ${room_number} room`}
+              </Button>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <Travelers />
           </PopoverContent>
         </Popover>
+        <div className="text-center">
+          <Button variant="blue" className="">
+            <Search />
+          </Button>
+        </div>
       </div>
     </div>
   );
