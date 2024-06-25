@@ -29,11 +29,14 @@ const Header = () => {
   return (
     <div className="container my-4">
       <h1 className="text-4xl font-semibold">Where to?</h1>
-      <div className="grid lg:grid-cols-4 gap-2 content-center items-center mx-auto my-5 p-2 bg-slate-200 rounded-lg">
+      <div className="grid lg:grid-cols-4 gap-1 content-center items-center mx-auto my-5 p-1 bg-yellow-400 rounded-lg">
         <Popover>
           <PopoverTrigger className="flex items-center justify-center " asChild>
             <div className="text-center">
-              <Button className="w-full flex justify-items-center justify-center gap-1">
+              <Button
+                variant="outline"
+                className="w-full flex justify-items-center justify-center gap-1"
+              >
                 <MapPin />
                 {selectedCity ? selectedCity : "Where are you going?"}
               </Button>
@@ -46,7 +49,10 @@ const Header = () => {
         <Popover>
           <PopoverTrigger className="flex items-center justify-center " asChild>
             <div className="text-center">
-              <Button className="w-full flex justify-items-center justify-center gap-1">
+              <Button
+                variant="outline"
+                className="w-full flex justify-items-center justify-center gap-1"
+              >
                 <Calendar />
                 {date?.from ? (
                   date.to ? (
@@ -70,7 +76,10 @@ const Header = () => {
         <Popover>
           <PopoverTrigger className="flex items-center justify-center " asChild>
             <div className="text-center">
-              <Button className="w-full flex justify-items-center justify-center gap-1">
+              <Button
+                variant="outline"
+                className="w-full flex justify-items-center justify-center gap-1"
+              >
                 <User />
                 {`${adults_number} ${
                   adults_number > 1 ? "travelers" : "traveler"
@@ -83,8 +92,8 @@ const Header = () => {
           </PopoverContent>
         </Popover>
         <div className="text-center">
-          <Button variant="blue" className="">
-            <Search />
+          <Button variant="blue" className="w-full text-xl ">
+            Search
           </Button>
         </div>
       </div>
