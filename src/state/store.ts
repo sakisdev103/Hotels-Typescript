@@ -4,6 +4,7 @@ import citiesReducer from "./cities/citiesSlice";
 import cityReducer from "./city/citySlice";
 import dateReducer from "./dates/datesSlice";
 import travelerRecuder from "./travelers/travelerSlice";
+import hotelsReducer from "./hotel/hotelSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     city: cityReducer,
     dates: dateReducer,
     travelers: travelerRecuder,
+    hotels: hotelsReducer,
   },
 });
 

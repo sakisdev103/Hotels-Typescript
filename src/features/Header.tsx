@@ -4,8 +4,10 @@ import { Dates } from "@/components/Dates";
 import Travelers from "@/components/Travelers";
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/state/store";
+import { AppDispatch } from "@/store";
+import { getHotels } from "@/state/hotel/hotelSlice";
 
 //Ui
 import {
@@ -21,11 +23,31 @@ import { MapPin, Calendar, User } from "lucide-react";
 import { format } from "date-fns";
 
 const Header = () => {
-  const { selectedCity } = useSelector((state: RootState) => state.city);
+  const { selectedCity, dest_id } = useSelector(
+    (state: RootState) => state.city
+  );
   const date = useSelector((state: RootState) => state.dates);
   const { adults_number, room_number } = useSelector(
     (state: RootState) => state.travelers
   );
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleClick = () => {
+    if (date?.from !== undefined && date.to !== undefined) {
+      const checkin_date = format(date.from, "yyyy-MM-dd");
+      const checkout_date = format(date.to, "yyyy-MM-dd");
+      dispatch(
+        getHotels({
+          checkin_date,
+          checkout_date,
+          room_number,
+          adults_number,
+          dest_id,
+        })
+      );
+    }
+  };
+
   return (
     <div className="container my-4">
       <h1 className="text-4xl font-semibold">Where to?</h1>
@@ -92,7 +114,12 @@ const Header = () => {
           </PopoverContent>
         </Popover>
         <div className="text-center">
-          <Button variant="blue" className="w-full text-xl ">
+          <Button
+            variant="blue"
+            className="w-full text-xl"
+            disabled={!selectedCity && true}
+            onClick={handleClick}
+          >
             Search
           </Button>
         </div>
