@@ -13,7 +13,7 @@ const Hotels = () => {
         const {
           hotel_id,
           hotel_name,
-          max_photo_url,
+          max_1440_photo_url,
           review_score,
           review_nr,
           default_wishlist_name,
@@ -25,11 +25,12 @@ const Hotels = () => {
           composite_price_breakdown,
           url,
         } = item;
+        console.log(item);
 
         return (
           <Card className="w-full sm:flex my-3" key={hotel_id}>
             <img
-              src={max_photo_url}
+              src={max_1440_photo_url}
               alt="Hotel"
               className="w-full h-[270px] sm:w-[240px] sm:h-[240px] rounded-lg"
             />
