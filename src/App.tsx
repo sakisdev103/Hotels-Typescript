@@ -9,8 +9,6 @@ import Loading from "./components/Loading";
 
 const App = () => {
   const { loading, hotels } = useSelector((state: RootState) => state.hotels);
-  console.log(hotels);
-
   return (
     <div>
       <Header />

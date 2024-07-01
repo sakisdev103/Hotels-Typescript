@@ -1,14 +1,79 @@
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/state/store";
+import { AppDispatch } from "@/store";
+import { getHotels, updateFilterOption } from "@/state/hotel/hotelSlice";
 
 //Ui
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { format } from "date-fns";
 
 const Hotels = () => {
-  const { hotels } = useSelector((state: RootState) => state.hotels);
+  const { hotels, filters, filterOption } = useSelector(
+    (state: RootState) => state.hotels
+  );
+  const { dest_id } = useSelector((state: RootState) => state.city);
+  const date = useSelector((state: RootState) => state.dates);
+  const { adults_number, room_number } = useSelector(
+    (state: RootState) => state.travelers
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleChange = (value: string) => {
+    if (date?.from !== undefined && date.to !== undefined) {
+      const checkin_date = format(date.from, "yyyy-MM-dd");
+      const checkout_date = format(date.to, "yyyy-MM-dd");
+      dispatch(updateFilterOption(value));
+      dispatch(
+        getHotels({
+          checkin_date,
+          checkout_date,
+          room_number,
+          adults_number,
+          dest_id,
+          order_by: value,
+        })
+      );
+    }
+  };
   return (
     <div className="container my-4">
+      <Select onValueChange={handleChange}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue
+            placeholder={`Sort by: ${filters.filter(({ id, name }) => {
+              if (id === filterOption) {
+                console.log(name);
+
+                return name;
+              }
+            })}`}
+          />
+        </SelectTrigger>
+        <SelectContent>
+          {filters
+            .filter(({ id }) => {
+              return id !== "bayesian_review_score";
+            })
+            .map(({ id, name }) => {
+              return (
+                <SelectItem value={id} key={id}>
+                  {name}
+                </SelectItem>
+              );
+            })}
+        </SelectContent>
+      </Select>
+
       {hotels.map((item) => {
         const {
           hotel_id,
@@ -25,7 +90,6 @@ const Hotels = () => {
           composite_price_breakdown,
           url,
         } = item;
-        console.log(item);
 
         return (
           <Card className="w-full sm:flex my-3" key={hotel_id}>

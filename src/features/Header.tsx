@@ -43,6 +43,7 @@ const Header = () => {
           room_number,
           adults_number,
           dest_id,
+          order_by: "popularity",
         })
       );
     }
