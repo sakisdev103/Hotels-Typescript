@@ -42,7 +42,7 @@ const Hotels = () => {
                   <p>{review_score !== null && `${review_nr} reviews`}</p>
                 </div>
               </div>
-              <div className="flex justify-between ">
+              <div className="flex justify-between my-3">
                 <p className="w-2/4">
                   {(district as string).length! > 0
                     ? `${district}, ${default_wishlist_name}`
@@ -55,7 +55,7 @@ const Hotels = () => {
                       `${distance_to_cc_formatted} from centre`}
                 </p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between my-3">
                 <div className="w-2/4">
                   <p
                     dangerouslySetInnerHTML={{
