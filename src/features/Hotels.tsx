@@ -36,19 +36,25 @@ const Hotels = () => {
             />
             <CardContent className="w-full">
               <div className="flex justify-between gap-y-3">
-                <h3 className="font-bold text-lg">{hotel_name}</h3>
+                <h3 className="font-bold text-lg text-blue-600">
+                  {hotel_name}
+                </h3>
                 <div className="text-end">
-                  <b>{review_score != null && `${review_score}/10`}</b>
-                  <p>{review_score !== null && `${review_nr} reviews`}</p>
+                  <b className="text-blue-600">
+                    {review_score != null && `${review_score}/10`}
+                  </b>
+                  <p className="text-sm">
+                    {review_score !== null && `${review_nr} reviews`}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-between my-3">
-                <p className="w-2/4">
+                <p className="w-2/4 text-sm text-blue-600 ">
                   {(district as string).length! > 0
                     ? `${district}, ${default_wishlist_name}`
                     : default_wishlist_name}
                 </p>
-                <p>
+                <p className="text-sm">
                   {distance_to_cc_formatted === "0"
                     ? `${(distance_to_cc as string).slice(0, 3)} km from centre`
                     : distance_to_cc_formatted !== undefined &&
