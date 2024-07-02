@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store";
 import { RootState } from "@/state/store";
 
-//Ui
+//UI
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 

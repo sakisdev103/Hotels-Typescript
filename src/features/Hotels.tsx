@@ -1,11 +1,15 @@
 import { useState } from "react";
+
+//File
+import Alert from "@/components/Alert";
+
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/state/store";
 import { AppDispatch } from "@/store";
 import { getHotels, updateFilterOption } from "@/state/hotel/hotelSlice";
 
-//Ui
+//UI
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -17,7 +21,6 @@ import {
 } from "@/components/ui/select";
 
 import { format } from "date-fns";
-import Alert from "@/components/Alert";
 
 const Hotels = () => {
   const { hotels, filters, filterOption } = useSelector(
