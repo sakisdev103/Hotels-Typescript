@@ -18,7 +18,11 @@ const Loading = () => {
               <Skeleton className="w-1/6 h-6" />
             </div>
             <div className="flex justify-between mt-10">
-              <Skeleton className="w-3/6 h-20" />
+              <Skeleton className="w-3/6 h-12" />
+              <Skeleton className="w-1/6 h-6" />
+            </div>
+            <div className="flex justify-between mt-10">
+              <Skeleton className="w-3/6 h-6" />
               <Skeleton className="w-1/6 h-6" />
             </div>
           </CardContent>
