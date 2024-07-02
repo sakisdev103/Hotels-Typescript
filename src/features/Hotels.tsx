@@ -108,7 +108,7 @@ const Hotels = () => {
               className="w-full h-[270px] sm:w-[240px] sm:h-[240px] rounded-lg"
             />
             <CardContent className="w-full">
-              <div className="flex justify-between gap-y-3">
+              <div className="flex justify-between">
                 <h3 className="font-bold text-lg text-blue-600">
                   {hotel_name}
                 </h3>
@@ -121,13 +121,13 @@ const Hotels = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-between my-3">
-                <p className="w-2/4 text-sm text-blue-600 ">
+              <div className="flex justify-between my-3 text-sm">
+                <p className="text-blue-600 ">
                   {(district as string).length! > 0
                     ? `${district}, ${default_wishlist_name}`
                     : default_wishlist_name}
                 </p>
-                <p className="text-sm">
+                <p className="text-end">
                   {distance_to_cc_formatted === "0"
                     ? `${(distance_to_cc as string).slice(0, 3)} km from centre`
                     : distance_to_cc_formatted !== undefined &&
@@ -135,16 +135,12 @@ const Hotels = () => {
                 </p>
               </div>
               <div className="flex justify-between my-3">
-                <div className="w-2/4">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: unit_configuration_label,
-                    }}
-                  />
-                  <p className="text-destructive font-semibold">
-                    {urgency_message}
-                  </p>
-                </div>
+                <p
+                  className="w-3/4"
+                  dangerouslySetInnerHTML={{
+                    __html: unit_configuration_label,
+                  }}
+                />
                 <div className="font-bold text-end">
                   <p>
                     {
@@ -152,14 +148,16 @@ const Hotels = () => {
                         .amount_rounded
                     }
                   </p>
-                  <Button
-                    variant="blue"
-                    className="mt-3"
-                    onClick={() => modalFunc(url)}
-                  >
-                    Reserve
-                  </Button>
                 </div>
+              </div>
+              <div className="flex justify-between items-center my-3">
+                <p className="text-destructive text-sm font-semibold">
+                  {urgency_message}
+                </p>
+
+                <Button variant="blue" onClick={() => modalFunc(url)}>
+                  Reserve
+                </Button>
               </div>
             </CardContent>
           </Card>
