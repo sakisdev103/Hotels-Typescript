@@ -6,6 +6,7 @@ import { AppDispatch } from "@/store";
 import { getHotels, updateFilterOption } from "@/state/hotel/hotelSlice";
 
 //Ui
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -100,11 +101,7 @@ const Hotels = () => {
         } = item;
 
         return (
-          <Card
-            className="w-full sm:flex my-3"
-            onClick={() => modalFunc(url)}
-            key={hotel_id}
-          >
+          <Card className="w-full sm:flex my-3" key={hotel_id}>
             <img
               src={max_1440_photo_url}
               alt="Hotel"
@@ -148,11 +145,20 @@ const Hotels = () => {
                     {urgency_message}
                   </p>
                 </div>
-                <div className="font-bold">
-                  {
-                    (composite_price_breakdown as any).all_inclusive_amount
-                      .amount_rounded
-                  }
+                <div className="font-bold text-end">
+                  <p>
+                    {
+                      (composite_price_breakdown as any).all_inclusive_amount
+                        .amount_rounded
+                    }
+                  </p>
+                  <Button
+                    variant="blue"
+                    className="mt-3"
+                    onClick={() => modalFunc(url)}
+                  >
+                    Reserve
+                  </Button>
                 </div>
               </div>
             </CardContent>
