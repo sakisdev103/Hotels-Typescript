@@ -45,18 +45,17 @@ const Hotels = () => {
       );
     }
   };
+
   return (
     <div className="container my-4">
       <Select onValueChange={handleChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue
-            placeholder={`Sort by: ${filters.filter(({ id, name }) => {
+            placeholder={filters.map(({ id, name }) => {
               if (id === filterOption) {
-                console.log(name);
-
-                return name;
+                return `Sort by: ${name}`;
               }
-            })}`}
+            })}
           />
         </SelectTrigger>
         <SelectContent>

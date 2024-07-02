@@ -14,7 +14,7 @@ const initialState = {
   loading: false,
   hotels: [],
   filters: [],
-  filterOption: "",
+  filterOption: "popularity",
 };
 const hotelSlice = createSlice({
   name: "hotel",
