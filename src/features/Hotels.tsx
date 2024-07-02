@@ -1,3 +1,4 @@
+import { useState } from "react";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/state/store";
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/select";
 
 import { format } from "date-fns";
+import Alert from "@/components/Alert";
 
 const Hotels = () => {
   const { hotels, filters, filterOption } = useSelector(
@@ -46,6 +48,14 @@ const Hotels = () => {
     }
   };
 
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [url, setUrl] = useState<string>("");
+
+  const modalFunc = (url: string) => {
+    setShowModal(!showModal);
+    setUrl(url);
+  };
+
   return (
     <div className="container my-4">
       <Select onValueChange={handleChange}>
@@ -72,7 +82,6 @@ const Hotels = () => {
             })}
         </SelectContent>
       </Select>
-
       {hotels.map((item) => {
         const {
           hotel_id,
@@ -91,7 +100,11 @@ const Hotels = () => {
         } = item;
 
         return (
-          <Card className="w-full sm:flex my-3" key={hotel_id}>
+          <Card
+            className="w-full sm:flex my-3"
+            onClick={() => modalFunc(url)}
+            key={hotel_id}
+          >
             <img
               src={max_1440_photo_url}
               alt="Hotel"
@@ -146,6 +159,7 @@ const Hotels = () => {
           </Card>
         );
       })}
+      <Alert showModal={showModal} setShowModal={setShowModal} url={url} />
     </div>
   );
 };

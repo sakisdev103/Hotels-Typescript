@@ -9,23 +9,32 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const Alert = () => {
+type state = {
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  url: string;
+};
+
+const Alert = ({ showModal, setShowModal, url }: state) => {
   return (
     <div className="container">
-      <AlertDialog>
+      <AlertDialog open={showModal}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
               You will be redirected on Booking.com
             </AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              Are you sure you want to leave this page?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Stay</AlertDialogCancel>
-            <AlertDialogAction>Leave</AlertDialogAction>
+            <AlertDialogCancel onClick={() => setShowModal(!showModal)}>
+              Stay
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={() => window.location.replace(url)}>
+              Leave
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
