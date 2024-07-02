@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const productionUrl = "https://booking-com.p.rapidapi.com/v1";
+const API_KEY = import.meta.env.VITE_APP_HOTEL_API_KEY;
 
 export const customFetch = axios.create({
   baseURL: productionUrl,
   headers: {
-    "X-RapidAPI-Key": "68a34a971cmshb4dafbfa28498e2p1e4c0fjsn0f1c743cc3c2",
+    "X-RapidAPI-Key": API_KEY,
     "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
   },
 });
